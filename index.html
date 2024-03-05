@@ -44,8 +44,46 @@
           </div>
         </nav>
       </header>
-      <main>
-
+      <main class="container my-3">
+        <div class="d-flex align-items-center justify-content-between">
+            <h1>Lista Contactos</h1>
+            <button
+              class="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#modalContacto"
+              id="btnNuevoContacto"
+            >
+              Nuevo contacto
+            </button>
+          </div>
+          <section class="table-responsive mt-4">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Apellido</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Celular</th>
+                  <th scope="col">Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="tablaContacto">
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Elena García</td>
+                  <td>Rodríguez</td>
+                  <td>elena.rodriguez@email.com</td>
+                  <td>555-123-4567</td>
+                  <td>
+                    <a class="btn btn-primary" href="./pages/detalleContacto.html">Ver mas</a>
+                    <button class="btn btn-warning">Editar</button>
+                    <button class="btn btn-danger">Borrar</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
       </main>
       <footer class="bg-dark text-light py-3 text-center">
         <p>&copy; Todos los derechos reservados</p>
