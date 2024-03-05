@@ -5,7 +5,7 @@ const nombre = document.querySelector("#nombre"),
   apellido = document.querySelector("#apellido"),
   email = document.querySelector("#email"),
   telefono = document.querySelector("#telefono");
-  const agenda = JSON.parse(localStorage.getItem('agendaKey')) || [];
+const agenda = JSON.parse(localStorage.getItem("agendaKey")) || [];
 
 const crearContacto = (e) => {
   e.preventDefault();
@@ -17,9 +17,7 @@ const crearContacto = (e) => {
     telefono.value
   );
   agenda.push(nuevoContacto);
-  console.log(agenda);
   limpiarFormularioContacto();
-  
   dibujarFila(nuevoContacto, agenda.length);
   guardarEnLocalstorage();
 };
@@ -32,9 +30,9 @@ const guardarEnLocalstorage = () => {
   localStorage.setItem("agendaKey", JSON.stringify(agenda));
 };
 
-const dibujarFila = (contacto, numeroFila)=>{
-    const tablaContactos = document.getElementById('tablaContacto');
-    tablaContactos.innerHTML += `<tr>
+const dibujarFila = (contacto, numeroFila) => {
+  const tablaContactos = document.getElementById("tablaContacto");
+  tablaContactos.innerHTML += `<tr>
     <th scope="row">${numeroFila}</th>
     <td>${contacto.nombre}</td>
     <td>${contacto.apellido}</td>
@@ -43,16 +41,29 @@ const dibujarFila = (contacto, numeroFila)=>{
     <td>
       <a class="btn btn-primary" href="./pages/detalleContacto.html">Ver mas</a>
       <button class="btn btn-warning">Editar</button>
-      <button class="btn btn-danger">Borrar</button>
+      <button class="btn btn-danger" onclick="borrarContacto('${contacto.id}')">Borrar</button>
     </td>
-  </tr>`
-  }
+  </tr>`;
+};
 
-  const cargaInicial = () =>{
-    if(agenda.length > 0){
-      agenda.map((itemContacto, posicionContacto)=> dibujarFila(itemContacto, posicionContacto + 1))
-    }
+const cargaInicial = () => {
+  if (agenda.length > 0) {
+    agenda.map((itemContacto, posicionContacto) =>
+      dibujarFila(itemContacto, posicionContacto + 1)
+    );
   }
+};
+
+window.borrarContacto = (idContacto) => {
+  const posicionContactoBuscado = agenda.findIndex(
+    (itemContacto) => itemContacto.id === idContacto
+  );
+  agenda.splice(posicionContactoBuscado, 1);
+  guardarEnLocalstorage();
+  const tablaContactos = document.getElementById("tablaContacto");
+  tablaContactos.innerHTML = "";
+  cargaInicial();
+};
 
 formularioContacto.addEventListener("submit", crearContacto);
 
