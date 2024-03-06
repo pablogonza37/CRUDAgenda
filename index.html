@@ -49,9 +49,9 @@
       <div class="d-flex align-items-center justify-content-between">
         <h1 class="display-3">Lista Contactos</h1>
         <button
+        type="button"
           class="btn btn-primary"
-          data-bs-toggle="modal"
-          data-bs-target="#modalContacto"
+          onclick="abrirModal()"
           id="btnNuevoContacto"
         >
           Nuevo contacto
@@ -131,7 +131,9 @@
                   placeholder="Ej: Juan perez"
                 />
               </div>
-              <button class="btn btn-primary" type="submit">Agregar</button>
+              <input type="hidden" id="contactId" />
+              <div id="btnFormulario"></div>
+              
             </form>
           </div>
         </div>

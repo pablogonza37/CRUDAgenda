@@ -1,6 +1,7 @@
 import Contacto from "./classContacto.js";
 
 const formularioContacto = document.querySelector("form");
+const modal = new bootstrap.Modal(document.getElementById("modalContacto"));
 const nombre = document.querySelector("#nombre"),
   apellido = document.querySelector("#apellido"),
   email = document.querySelector("#email"),
@@ -40,7 +41,7 @@ const dibujarFila = (contacto, numeroFila) => {
     <td>${contacto.telefono}</td>
     <td>
     <button class="btn btn-primary" onclick="detalleContacto('${contacto.id}')">Ver mas</button>
-      <button class="btn btn-warning">Editar</button>
+      <button class="btn btn-warning" onclick="editarContacto('${contacto.id}')">Editar</button>
       <button class="btn btn-danger" onclick="borrarContacto('${contacto.id}')">Borrar</button>
     </td>
   </tr>`;
@@ -66,10 +67,60 @@ window.borrarContacto = (idContacto) => {
 };
 
 window.detalleContacto = (idContacto) => {
-    console.log(window.location);
-    window.location.href =
-      window.location.origin + "/pages/detalleContacto.html?id=" + idContacto;
-  };
+  console.log(window.location);
+  window.location.href =
+    window.location.origin + "/pages/detalleContacto.html?id=" + idContacto;
+};
+
+window.abrirModal = () => {
+  modal.show();
+  const btnFormulario = document.getElementById("btnFormulario");
+  limpiarFormularioContacto();
+  btnFormulario.innerHTML = `<button class="btn btn-primary" type="submit" id="btnAgregar">Agregar</button>`;
+};
+
+window.editarContacto = (idContacto) => {
+  const btnFormulario = document.getElementById("btnFormulario");
+  btnFormulario.innerHTML = `<button class="btn btn-primary" type="button" id="btnSaveContact" onclick="guardarCambios()">Guardar Cambios</button>`;
+  const contacto = agenda.find(
+    (itemContacto) => itemContacto.id === idContacto
+  );
+  if (contacto) {
+    nombre.value = contacto.nombre;
+    apellido.value = contacto.apellido;
+    email.value = contacto.email;
+    telefono.value = contacto.telefono;
+    document.getElementById("contactId").value = idContacto;
+    modal.show();
+  }
+};
+
+window.guardarCambios = () => {
+  const idContacto = document.getElementById("contactId").value;
+  const contactoIndex = agenda.findIndex(
+    (itemContacto) => itemContacto.id === idContacto
+  );
+  if (contactoIndex !== -1) {
+    agenda[contactoIndex] = new Contacto(
+      nombre.value,
+      apellido.value,
+      email.value,
+      telefono.value
+    );
+    guardarEnLocalstorage();
+    modal.hide();
+    limpiarFormularioContacto();
+    actualizarListaContactos();
+  }
+};
+
+const actualizarListaContactos = () => {
+  const tablaContactos = document.getElementById("tablaContacto");
+  tablaContactos.innerHTML = "";
+  agenda.forEach((contacto, indice) => {
+    dibujarFila(contacto, indice + 1);
+  });
+};
 
 formularioContacto.addEventListener("submit", crearContacto);
 
