@@ -1,12 +1,6 @@
-console.log(window.location.search);
-
 const parametroURL = new URLSearchParams(window.location.search);
 const idContacto = parametroURL.get("id");
-
-console.log(idContacto);
-
 const contactos = JSON.parse(localStorage.getItem("agendaKey"));
-
 const contacto = contactos.find((contacto) => contacto.id === idContacto);
 
 function dibujarCard(contacto) {

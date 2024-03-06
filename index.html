@@ -34,9 +34,13 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="index.html" data-bs-toggle="modal"
-                data-bs-target="#modalContacto"
-                id="btnNuevoContacto"
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  href="index.html"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalContacto"
+                  id="btnNuevoContacto"
                   >Nuevo contacto</a
                 >
               </li>
@@ -49,7 +53,7 @@
       <div class="d-flex align-items-center justify-content-between">
         <h1 class="display-3">Lista Contactos</h1>
         <button
-        type="button"
+          type="button"
           class="btn btn-primary"
           onclick="abrirModal()"
           id="btnNuevoContacto"
@@ -69,9 +73,7 @@
               <th scope="col">Acciones</th>
             </tr>
           </thead>
-          <tbody id="tablaContacto">
-          
-          </tbody>
+          <tbody id="tablaContacto"></tbody>
         </table>
       </section>
     </main>
@@ -102,6 +104,9 @@
                   id="nombre"
                   class="form-control"
                   placeholder="Ej: Juan perez"
+                  minlength="3"
+                  maxlength="25"
+                  required
                 />
               </div>
               <div class="mb-3">
@@ -111,29 +116,35 @@
                   id="apellido"
                   class="form-control"
                   placeholder="Ej: Juan perez"
+                  minlength="2"
+                  maxlength="35"
+                  required
                 />
               </div>
               <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input
-                  type="text"
+                  type="email"
                   id="email"
                   class="form-control"
                   placeholder="Ej: Juan perez"
+                  required
                 />
               </div>
               <div class="mb-3">
                 <label for="telefono" class="form-label">Telefono</label>
                 <input
-                  type="text"
+                  type="tel"
                   id="telefono"
                   class="form-control"
                   placeholder="Ej: Juan perez"
+                  min="7"
+                  max="15"
+                  required
                 />
               </div>
               <input type="hidden" id="contactId" />
               <div id="btnFormulario"></div>
-              
             </form>
           </div>
         </div>
@@ -147,6 +158,7 @@
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./js/app.js" type="module"></script>
   </body>
 </html>
