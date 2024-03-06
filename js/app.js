@@ -70,12 +70,12 @@ const cargaInicial = () => {
 window.borrarContacto = (idContacto) => {
   Swal.fire({
     title: "Esta seguro de borrar el contacto?",
-    text: "Esta accion es irreversble!",
+    text: "Esta accion es irreversible!",
     icon: "warning",
     showCancelButton: true,
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
-    confirmButtonText: "Si, quiero borrar!",
+    confirmButtonText: "Si, estoy seguro!",
   }).then((result) => {
     if (result.isConfirmed) {
       const posicionContactoBuscado = agenda.findIndex(
@@ -87,7 +87,7 @@ window.borrarContacto = (idContacto) => {
       tablaContactos.innerHTML = "";
       cargaInicial();
       Swal.fire({
-        title: "borrado!",
+        title: "Borrado!",
         text: "El contacto ha sido eliminado.",
         icon: "success",
       });
