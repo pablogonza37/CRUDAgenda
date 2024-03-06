@@ -2,6 +2,7 @@ import Contacto from "./classContacto.js";
 
 const formularioContacto = document.querySelector("form");
 const modal = new bootstrap.Modal(document.getElementById("modalContacto"));
+const tituloFormulario = document.querySelector('#tituloFormulario')
 const nombre = document.querySelector("#nombre"),
   apellido = document.querySelector("#apellido"),
   email = document.querySelector("#email"),
@@ -103,12 +104,14 @@ window.detalleContacto = (idContacto) => {
 window.abrirModal = () => {
   modal.show();
   const btnFormulario = document.getElementById("btnFormulario");
+  tituloFormulario.textContent = 'Registrar contacto';
   limpiarFormularioContacto();
   btnFormulario.innerHTML = `<button class="btn btn-primary" type="submit" id="btnAgregar">Agregar</button>`;
 };
 
 window.editarContacto = (idContacto) => {
   const btnFormulario = document.getElementById("btnFormulario");
+  tituloFormulario.textContent = 'Editar contacto';
   btnFormulario.innerHTML = `<button class="btn btn-primary" type="button" id="btnSaveContact" onclick="guardarCambios()">Guardar Cambios</button>`;
   const contacto = agenda.find(
     (itemContacto) => itemContacto.id === idContacto
