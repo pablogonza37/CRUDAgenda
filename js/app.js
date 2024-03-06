@@ -76,6 +76,7 @@ window.borrarContacto = (idContacto) => {
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
     confirmButtonText: "Si, estoy seguro!",
+    cancelButtonText: "Cancelar",
   }).then((result) => {
     if (result.isConfirmed) {
       const posicionContactoBuscado = agenda.findIndex(
